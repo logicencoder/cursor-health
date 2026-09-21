@@ -8,6 +8,8 @@ Interactive menu: health dashboard, safe cache clean, optional `cursor-server` s
 |-----|---------|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Functions, paths, platform detection |
 
+Cursor often hits **Electron renderer OOM** (`"reason":"oom"` in `cursor-sentry-events.log`). Large `agent-tools/*.txt` dumps and a multi-day `cursor-server` (~2 GB RSS) make long agent sessions worse — the script exists to reclaim that safely.
+
 GitHub: [logicencoder/cursor-health](https://github.com/logicencoder/cursor-health), branch **`main`**.
 
 ## Platforms
@@ -18,10 +20,6 @@ Works on **both** — the script auto-detects **WSL** vs **bare Linux**:
 |-------------|------------|
 | **WSL2** | Memory, cursor-server, agent-tools, Windows logs via `/mnt/c/Users/{WIN_USER}/...`, plus `~/.config/Cursor/logs` if present |
 | **Bare Linux** (Ubuntu, etc.) | Memory, cursor-server, agent-tools, `~/.config/Cursor/logs` — no `/mnt/c` |
-
-## Why it exists
-
-Cursor often hits **Electron renderer OOM** (`"reason":"oom"` in `cursor-sentry-events.log`). Large `agent-tools/*.txt` dumps and a multi-day `cursor-server` (~2 GB RSS) make long agent sessions worse.
 
 ## Install
 
